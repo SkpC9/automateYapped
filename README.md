@@ -14,7 +14,7 @@ This program is developed with using [Vortex](https://www.nexusmods.com/about/vo
 
 If mod authors provide csv files, this program can be configured to merge their mods using csv instead of regulation.bin to reduce the time cost
 
-[Demostration Video](https://youtu.be/qJuwR3drlrI)
+[Demonstration Video](https://youtu.be/qJuwR3drlrI)
 
 ## **Usage**
 
