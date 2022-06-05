@@ -21,17 +21,6 @@ import configparser
 from ast import literal_eval
 
 
-base_regulation_path = ''  # game original
-base_csv_folder = ''
-Yapped_folder = ''
-Yapped_csv_folder = ''
-merged_regulation_path = ''
-# mods_info sorted by load order(currently have to manually decide), first to last --future may intergerate with Vortex
-mods_info = []  # tuple for path and flag(bin or csv)
-bin_file_relpath = ''  # relative path from mod folder
-csv_folder_relpath = ''
-
-
 def massExport(regulation_path, Yapped_folder):
     app = application.Application(backend="uia")
     app.start(Yapped_folder + "/Yapped-Rune-Bear.exe", work_dir=Yapped_folder)
