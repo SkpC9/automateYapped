@@ -38,6 +38,6 @@ If mod authors provide csv files, this program can be configured to merge their 
 6. Wait until it says all done, the press Enter to exit.
 7. Get the merged regulation.bin file from merged_regulation_path(set in ini) and enjoy!
 
-## Todo
+## guide
 
-Will write a guide for Vortex+ModEngine2+SeamlessCoop(can be used solely for seperate save files) later
+A [guide](https://github.com/SkpC9/automateYapped/wiki/guide_for_vortex) for Vortex+ModEngine2+SeamlessCoop is added.

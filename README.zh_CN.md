@@ -38,6 +38,6 @@
 6. 一直等到程序提示 all done，然后按 Enter 退出程序
 7. 从merged_regulation_path（在ini文件中设置的）获取合并后的 regulation.bin 文件，enjoy！
 
-## Todo
+## guide
 
-Will write a guide for Vortex+ModEngine2+SeamlessCoop(can be used solely for seperate save files) later
+A [guide](https://github.com/SkpC9/automateYapped/wiki/guide_for_vortex) for Vortex+ModEngine2+SeamlessCoop is added.
