@@ -21,19 +21,15 @@ import configparser
 from ast import literal_eval
 
 
-base_regulation_path = r"E:/SteamLibrary/steamapps/common/ELDEN RING/Game/regulation.bin"  # game original
-base_csv_folder = r"G:/Games/VortexResource/Games/eldenring/tools/Yapped/basecsv/"
-Yapped_folder = r"G:/Games/VortexResource/Games/eldenring/tools/Yapped/"
-Yapped_csv_folder = r"G:\Games\VortexResource\Games\eldenring\tools\Yapped\Projects\ExampleMod\CSV\ER"
-merged_regulation_path = r"G:\Games\VortexResource\Games\eldenring\mods\merged_regulationbin\mod\regulation.bin"
-merged_csv_folder = r"G:\Games\VortexResource\Games\eldenring\mods\merged_regulationbin\mergedcsv"
+base_regulation_path = ''  # game original
+base_csv_folder = ''
+Yapped_folder = ''
+Yapped_csv_folder = ''
+merged_regulation_path = ''
 # mods_info sorted by load order(currently have to manually decide), first to last --future may intergerate with Vortex
-mods_info = [
-    (r"G:\Games\VortexResource\Games\eldenring\mods\Grand Merchant - Standard - 1.08-129-1-08-1651255230", 'bin'),
-    (r"G:\Games\VortexResource\Games\eldenring\mods\CRAFTING IS FREE-404-v1-1651149952", 'csv'),
-]  # tuple for path and flag(bin or csv)
-bin_file_relpath = r"mod\regulation.bin"  # relative path from mod folder
-csv_folder_relpath = r"mod\modcsv"
+mods_info = []  # tuple for path and flag(bin or csv)
+bin_file_relpath = ''  # relative path from mod folder
+csv_folder_relpath = ''
 
 
 def massExport(regulation_path, Yapped_folder):
@@ -187,7 +183,7 @@ def mergeExportedCsv(base_csv_folder, merged_csv_folder, mod_csv_folder):
     return files_modified_by_mod, RowIDs_modified_in_file
 
 
-def massImportAndSave(regulation_path):
+def massImportAndSave(regulation_path, Yapped_folder):
     app = application.Application(backend="uia")
     app.start(Yapped_folder + "/Yapped-Rune-Bear.exe", work_dir=Yapped_folder)
     dlg_main = app.top_window()
@@ -315,7 +311,7 @@ def main():
     print("finished copy")
 
     print("start mass import and save")
-    massImportAndSave(merged_regulation_path)
+    massImportAndSave(merged_regulation_path, Yapped_folder)
     print("finished mass import and save")
 
     print("all done")
