@@ -32,7 +32,7 @@ If mod authors provide csv files, this program can be configured to merge their 
         * **'merged_csv_folder'** : stores csv files that this program produces while runing.
         * **'bin_file_relpath'** : mod regulation.bin file relative path from mod path
         * **'csv_folder_relpath'** : mod csv folder relative path from mod path
-        * In **[mods_info]** the items are sorted by mod load order(currently have to manually decide the order). Each value is a tuple that contains two strings, first is **mod_path**. Make sure that mod_path+bin_file_relpath is the mod regulation.bin file, and mod_path+csv_folder_relpath is the folder that contains mod csv files(if any). The second one is **mod_flag**. If set to 'bin', it means that mod regulation.bin file will be used for merge. If set to 'csv', it means that mod csv files will be used.
+        * In **[mods_info]** the items are sorted by mod load order(currently have to manually decide the order). Each value contains two strings seperated by '?', first is **mod_path**. Make sure that mod_path+bin_file_relpath is the mod regulation.bin file, and mod_path+csv_folder_relpath is the folder that contains mod csv files(if any). The second one is **mod_flag**. If set to 'bin', it means that mod regulation.bin file will be used for merge. If set to 'csv', it means that mod csv files will be used.
 
 5. Do as the program instructed. Press Enter to start, don't touch keyboard or mouse after start.
 6. Wait until it says all done, the press Enter to exit.
@@ -40,4 +40,4 @@ If mod authors provide csv files, this program can be configured to merge their 
 
 ## guide
 
-A [guide](https://github.com/SkpC9/automateYapped/wiki/guide_for_vortex) for Vortex+ModEngine2+SeamlessCoop is added.
+A [guide](https://github.com/SkpC9/automateYapped/wiki/guide_for_vortex) for Vortex+Mod Engine 2+Seamless Co-op is added.

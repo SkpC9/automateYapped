@@ -32,7 +32,7 @@
         * **'merged_csv_folder'** : 存储此程序运行中产生的 csv 文件
         * **'bin_file_relpath'** : 模组的 regulation.bin 文件相对于 mod_path 的路径
         * **'csv_folder_relpath'** : 模组的 csv 文件夹相对于 mod_path 的路径
-        * 在 **[mods_info]** 中，各条目按照模组加载顺序排序（目前只能人工决定加载顺序）. 每个值都是一个元组（tuple），里面包含两个字符串。第一个是 **mod_path**。需要确保 mod_path+bin_file_relpath 是模组的 regulation.bin 文件的路径，并且  mod_path+csv_folder_relpath 是包含模组 csv 文件（如果有的话）的文件夹. 第二个是 **mod_flag**. 如果它的值是 'bin'，将使用模组的 regulation.bin 文件进行合并。如果是 'csv'，将使用模组的 csv 文件
+        * 在 **[mods_info]** 中，各条目按照模组加载顺序排序（目前只能人工决定加载顺序）. 每个值都包含两个由'?'分隔的字符串。第一个是 **mod_path**。需要确保 mod_path+bin_file_relpath 是模组的 regulation.bin 文件的路径，并且  mod_path+csv_folder_relpath 是包含模组 csv 文件（如果有的话）的文件夹. 第二个是 **mod_flag**. 如果它的值是 'bin'，将使用模组的 regulation.bin 文件进行合并。如果是 'csv'，将使用模组的 csv 文件
 
 5. 按照程序的指示操作. 按 Enter 开始，开始后不要触碰键盘和鼠标
 6. 一直等到程序提示 all done，然后按 Enter 退出程序
@@ -40,4 +40,4 @@
 
 ## guide
 
-A [guide](https://github.com/SkpC9/automateYapped/wiki/guide_for_vortex) for Vortex+ModEngine2+SeamlessCoop is added.
+A [guide](https://github.com/SkpC9/automateYapped/wiki/guide_for_vortex) for Vortex+Mod Engine 2+Seamless Co-op is added.
