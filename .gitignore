@@ -1,4 +1,6 @@
-dist/*
-build/*
+*dist/
+*build/
 *.spec
 *.lnk
+*.exe
+gitignore_*

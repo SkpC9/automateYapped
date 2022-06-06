@@ -221,7 +221,8 @@ def main():
             csv_folder_relpath = config['Paths']['csv_folder_relpath']
             temp_list = []
             for (index, mod_info) in config.items('mods_info'):
-                temp_list.append(literal_eval(mod_info))
+                temp_mod_path, temp_mod_flag = mod_info.split(sep='?')
+                temp_list.append(tuple((temp_mod_path.strip(),temp_mod_flag.strip())))
             mods_info = temp_list
     except Exception as e:
         print('no valid ini config found. creating one with default values')
@@ -238,8 +239,8 @@ def main():
             'csv_folder_relpath': r"mod\modcsv",
         }
         config['mods_info'] = {
-            0: (r"G:\Games\VortexResource\Games\eldenring\mods\Grand Merchant - Standard - 1.08-129-1-08-1651255230", 'bin'),
-            1: (r"G:\Games\VortexResource\Games\eldenring\mods\CRAFTING IS FREE-404-v1-1651149952", 'csv'),
+            0: r"G:\Games\VortexResource\Games\eldenring\mods\Grand Merchant - Standard - 1.08-129-1-08-1651255230 ? bin",
+            1: r"G:\Games\VortexResource\Games\eldenring\mods\CRAFTING IS FREE-404-v1-1651149952 ? csv",
         }
         with open('automateYapped.ini', 'w') as config_file:
             config.write(config_file)
@@ -251,7 +252,7 @@ def main():
 
     # step 1
     # copy file
-    copyfile(base_regulation_path, merged_regulation_path)  # may be not needed
+    # copyfile(base_regulation_path, merged_regulation_path)  # may be not needed
 
     # get base and merged csv
     # base. only need to run this once
