@@ -4,3 +4,4 @@
 *.lnk
 *.exe
 gitignore_*
+__pycache__/
