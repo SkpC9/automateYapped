@@ -252,7 +252,7 @@ def main():
 
     # step 1
     # copy file
-    # copyfile(base_regulation_path, merged_regulation_path)  # may be not needed
+    copyfile(base_regulation_path, merged_regulation_path)  # may be not needed
 
     # get base and merged csv
     # base. only need to run this once
