@@ -18,7 +18,6 @@ import os
 import pandas as pd
 import numpy as np
 import configparser
-from ast import literal_eval
 
 
 def massExport(regulation_path, Yapped_folder):
@@ -96,10 +95,9 @@ def mergeExportedCsv(base_csv_folder, merged_csv_folder, mod_csv_folder):
     # this two is for mod compatibility check, currently unused
     files_modified_by_mod = dict()
     RowIDs_modified_in_file = dict()
-    for root, dirs, files in os.walk(mod_csv_folder, topdown=False):
-        for name in tqdm(files):
-            # if name not in ['SpEffectParam.csv']:
-            #     continue
+    for root, _, files in os.walk(mod_csv_folder, topdown=False):
+        # delete those not endswith .csv, in case some mod put bin and csv in the same folder
+        for name in tqdm([f for f in files if f.endswith(".csv")]):
             tqdm.write("current csv file: " + name)
             # mod_csv = pd.read_csv(os.path.join(mod_csv_folder, name), sep=';', index_col=False, dtype="string").set_index("Row ID")
             # don't know why game regulation.bin have dulplicate RowIDs. can't use that as index for update...
@@ -217,12 +215,15 @@ def main():
             Yapped_csv_folder = config['Paths']['Yapped_csv_folder']
             merged_regulation_path = config['Paths']['merged_regulation_path']
             merged_csv_folder = config['Paths']['merged_csv_folder']
-            bin_file_relpath = config['Paths']['bin_file_relpath']
-            csv_folder_relpath = config['Paths']['csv_folder_relpath']
             temp_list = []
             for (index, mod_info) in config.items('mods_info'):
-                temp_mod_path, temp_mod_flag = mod_info.split(sep='?')
-                temp_list.append(tuple((temp_mod_path.strip(),temp_mod_flag.strip())))
+                if mod_info[0]=='(':
+                    # v1.1 1.0
+                    raise ValueError('invalid ini config')
+                if '?' in mod_info:
+                    # v1.1.1
+                    raise ValueError('invalid ini config')
+                temp_list.append(mod_info.strip())
             mods_info = temp_list
     except Exception as e:
         print('no valid ini config found. creating one with default values')
@@ -235,12 +236,10 @@ def main():
             'Yapped_csv_folder': r"G:\Games\VortexResource\Games\eldenring\tools\Yapped\Projects\ExampleMod\CSV\ER",
             'merged_regulation_path': r"G:\Games\VortexResource\Games\eldenring\mods\merged_regulationbin\mod\regulation.bin",
             'merged_csv_folder': r"G:\Games\VortexResource\Games\eldenring\mods\merged_regulationbin\mergedcsv",
-            'bin_file_relpath': r"mod\regulation.bin",
-            'csv_folder_relpath': r"mod\modcsv",
         }
         config['mods_info'] = {
-            0: r"G:\Games\VortexResource\Games\eldenring\mods\Grand Merchant - Standard - 1.08-129-1-08-1651255230 ? bin",
-            1: r"G:\Games\VortexResource\Games\eldenring\mods\CRAFTING IS FREE-404-v1-1651149952 ? csv",
+            0: r"G:\Games\VortexResource\Games\eldenring\mods\Grand Merchant - Standard - 1.08-129-1-08-1651255230",
+            1: r"G:\Games\VortexResource\Games\eldenring\mods\CRAFTING IS FREE-404-v1-1651149952",
         }
         with open('automateYapped.ini', 'w') as config_file:
             config.write(config_file)
@@ -257,35 +256,55 @@ def main():
     # get base and merged csv
     # base. only need to run this once
     print("start base regulation.bin mass export")
-    massExport(base_regulation_path, Yapped_folder)
+    # massExport(base_regulation_path, Yapped_folder)
     print("finished base mass export")
     print("start copy to base")
-    copy_tree(Yapped_csv_folder, base_csv_folder)
+    # copy_tree(Yapped_csv_folder, base_csv_folder)
     print("finished copy")
 
     # merged
     # merged can be directly copied from base to save time
     print("start copy to merged")
-    copy_tree(base_csv_folder, merged_csv_folder)
+    # copy_tree(base_csv_folder, merged_csv_folder)
     print("finished copy")
 
     # step 2 ~ 4
     # start merging
     print("\nstart merging")
-    for mod_index, (mod_path, mod_flag) in enumerate(mods_info):
+    for mod_index, mod_path in enumerate(mods_info):
         print("mod index = ", mod_index)
+        # update automatically find .bin file, no need to spcify rel path
+        # if there are csv files, will use csv files first to reduce time
+        mod_flag = 'bin'
+        mod_csv_folder = ''
+        # find csv
+        for root, dirs, files in os.walk(mod_path, topdown=False):
+            for name in files:
+                if name.endswith('.csv'):
+                    mod_flag = 'csv'
+                    mod_csv_folder = root
+                    break
+            if not mod_csv_folder=='':
+                break
+
         if mod_flag in ['bin']:
             print("this mod provides regulation.bin")
-            # make sure no slash before 'mod\regulation.bin', otherwise os.path.join won't work
-            regulation_path = os.path.join(
-                mod_path, bin_file_relpath)  # for use with Vortex
-            massExport(regulation_path, Yapped_folder)
+            # find bin
+            regulation_path = ''
+            for root, dirs, files in os.walk(mod_path, topdown=False):
+                for name in files:
+                    if name.endswith('.bin'):
+                        regulation_path= os.path.join(root, name)
+                        break
+                if not regulation_path == '':
+                    break
+            # for use with Vortex
+            # massExport(regulation_path, Yapped_folder)
             # start merge csv
-            mergeExportedCsv(
-                base_csv_folder, merged_csv_folder, Yapped_csv_folder)
+            # mergeExportedCsv(
+            #     base_csv_folder, merged_csv_folder, Yapped_csv_folder)
         elif mod_flag in ['csv']:
             print("this mod provides csv file(s)")
-            mod_csv_folder = os.path.join(mod_path, csv_folder_relpath)
             mergeExportedCsv(
                 base_csv_folder, merged_csv_folder, mod_csv_folder)
         else:

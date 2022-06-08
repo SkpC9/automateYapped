@@ -2,7 +2,7 @@
 
 你现在在使用中文
 
-[Englis_Description](README.md)
+[English_Description](README.md)
 
 ## **简介**
 
