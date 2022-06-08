@@ -12,7 +12,7 @@
 
 结合 [Vortex](https://www.nexusmods.com/about/vortex/) 和 [ModEngine2](https://github.com/soulsmods/ModEngine2/releases) 使用此程序会更方便
 
-如果模组作者提供csv文件，这个程序可以配置为使用 csv 而不是 regulation.bin 来合并他们的 mod ，以减少程序消耗的时间
+如果模组作者提供csv文件，这个程序可以自动使用 csv 而不是 regulation.bin 来合并他们的 mod ，以减少程序消耗的时间
 
 [介绍视频](https://www.bilibili.com/video/BV1NY4y1577a/)
 
@@ -30,9 +30,9 @@
         * **'Yapped_csv_folder'** : Yapped 提取的 csv 文件会被 Yapped 存放到这个文件夹。默认值应该是 Yapped_folder+'/Projects/ExampleMod/CSV/ER'
         * **'merged_regulation_path'** : 此程序输出的 regulation.bin 文件
         * **'merged_csv_folder'** : 存储此程序运行中产生的 csv 文件
-        * **'bin_file_relpath'** : 模组的 regulation.bin 文件相对于 mod_path 的路径
-        * **'csv_folder_relpath'** : 模组的 csv 文件夹相对于 mod_path 的路径
-        * 在 **[mods_info]** 中，各条目按照模组加载顺序排序（目前只能人工决定加载顺序）. 每个值都包含两个由'?'分隔的字符串。第一个是 **mod_path**。需要确保 mod_path+bin_file_relpath 是模组的 regulation.bin 文件的路径，并且  mod_path+csv_folder_relpath 是包含模组 csv 文件（如果有的话）的文件夹. 第二个是 **mod_flag**. 如果它的值是 'bin'，将使用模组的 regulation.bin 文件进行合并。如果是 'csv'，将使用模组的 csv 文件
+        * **'bin_file_relpath'** : 当前版本未使用，你可以在配置文件中删除这一行
+        * **'csv_folder_relpath'** : 当前版本未使用，你可以在配置文件中删除这一行
+        * 在 **[mods_info]** 中，各条目按照模组加载顺序排序（目前只能人工决定加载顺序）. 每个值一个都是一个字符串 **mod_path**。目前，如果在 mod_path 中检测到csv文件，此程序将自动使用 csv 文件进行合并（csv 文件可以放在 mod_path 内的任何位置，甚至在regulation.bin 文件旁边。但如果有多个csv文件，这些csv文件必须在同一个文件夹中）。 如果 mod_path 中没有 csv 文件，此程序将使用 mod_path 中的 .bin 文件进行合并（可以重命名regulation.bin 文件以避免在 Vortex 中发生文件冲突，注意要保留其扩展名 .bin）。
 
 5. 按照程序的指示操作. 按 Enter 开始，开始后不要触碰键盘和鼠标
 6. 一直等到程序提示 all done，然后按 Enter 退出程序
