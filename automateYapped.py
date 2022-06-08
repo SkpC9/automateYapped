@@ -256,16 +256,16 @@ def main():
     # get base and merged csv
     # base. only need to run this once
     print("start base regulation.bin mass export")
-    # massExport(base_regulation_path, Yapped_folder)
+    massExport(base_regulation_path, Yapped_folder)
     print("finished base mass export")
     print("start copy to base")
-    # copy_tree(Yapped_csv_folder, base_csv_folder)
+    copy_tree(Yapped_csv_folder, base_csv_folder)
     print("finished copy")
 
     # merged
     # merged can be directly copied from base to save time
     print("start copy to merged")
-    # copy_tree(base_csv_folder, merged_csv_folder)
+    copy_tree(base_csv_folder, merged_csv_folder)
     print("finished copy")
 
     # step 2 ~ 4
@@ -273,7 +273,7 @@ def main():
     print("\nstart merging")
     for mod_index, mod_path in enumerate(mods_info):
         print("mod index = ", mod_index)
-        # update automatically find .bin file, no need to spcify rel path
+        # update automatically find .bin file, no need to specify relpath
         # if there are csv files, will use csv files first to reduce time
         mod_flag = 'bin'
         mod_csv_folder = ''
@@ -299,10 +299,10 @@ def main():
                 if not regulation_path == '':
                     break
             # for use with Vortex
-            # massExport(regulation_path, Yapped_folder)
+            massExport(regulation_path, Yapped_folder)
             # start merge csv
-            # mergeExportedCsv(
-            #     base_csv_folder, merged_csv_folder, Yapped_csv_folder)
+            mergeExportedCsv(
+                base_csv_folder, merged_csv_folder, Yapped_csv_folder)
         elif mod_flag in ['csv']:
             print("this mod provides csv file(s)")
             mergeExportedCsv(
