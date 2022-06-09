@@ -97,7 +97,10 @@ def mergeExportedCsv(base_csv_folder, merged_csv_folder, mod_csv_folder):
     RowIDs_modified_in_file = dict()
     for root, _, files in os.walk(mod_csv_folder, topdown=False):
         # delete those not endswith .csv, in case some mod put bin and csv in the same folder
-        for name in tqdm([f for f in files if f.endswith(".csv")]):
+        current_files = [f for f in files if f.endswith(".csv")]
+        if len(current_files) == 0:
+            continue
+        for name in tqdm(current_files):
             tqdm.write("current csv file: " + name)
             # mod_csv = pd.read_csv(os.path.join(mod_csv_folder, name), sep=';', index_col=False, dtype="string").set_index("Row ID")
             # don't know why game regulation.bin have dulplicate RowIDs. can't use that as index for update...
