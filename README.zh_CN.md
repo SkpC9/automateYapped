@@ -32,7 +32,7 @@
         * **'merged_csv_folder'** : 存储此程序运行中产生的 csv 文件
         * **'bin_file_relpath'** : 当前版本未使用，你可以在配置文件中删除这一行
         * **'csv_folder_relpath'** : 当前版本未使用，你可以在配置文件中删除这一行
-        * 在 **[mods_info]** 中，各条目按照模组加载顺序排序（目前只能人工决定加载顺序）. 每个值一个都是一个字符串 **mod_path**。目前，如果在 mod_path 中检测到csv文件，此程序将自动使用 csv 文件进行合并（csv 文件可以放在 mod_path 内的任何位置，甚至在regulation.bin 文件旁边。但如果有多个csv文件，这些csv文件必须在同一个文件夹中）。 如果 mod_path 中没有 csv 文件，此程序将使用 mod_path 中的 .bin 文件进行合并（可以重命名regulation.bin 文件以避免在 Vortex 中发生文件冲突，注意要保留其扩展名 .bin）。
+        * 在 **[mods_info]** 中，各条目按照模组加载顺序排序（目前只能人工决定加载顺序）。每个值一个都是一个字符串 **mod_path**。目前，如果在 mod_path 中检测到csv文件，此程序将自动使用 csv 文件进行合并（csv 文件可以放在 mod_path 内的任何位置，甚至在regulation.bin 文件旁边。但如果有多个csv文件，这些csv文件必须在同一个文件夹中）。 如果 mod_path 中没有 csv 文件，此程序将使用 mod_path 中的 .bin 文件进行合并（可以重命名regulation.bin 文件以避免在 Vortex 中发生文件冲突，注意要保留其扩展名 .bin）。
 
 5. 按照程序的指示操作. 按 Enter 开始，开始后不要触碰键盘和鼠标
 6. 一直等到程序提示 all done，然后按 Enter 退出程序
